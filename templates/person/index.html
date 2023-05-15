@@ -1,0 +1,143 @@
+{% load static i18n %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Website - Home </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="authors" content="Souhail Harrathi & Jad Estephan">
+     <!-- ============================ Style & UNICONS CSS --============================ -->
+        <link rel="stylesheet" type="text/css" href="{% static '/css/style.css'%}" >
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+</head>
+
+<!-- ============================  Header ============================ -->
+    <!-- ============================  Header ============================ -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list grid">
+                    <li class="nav__item">
+                        <a href="/" class="nav__link">
+                            <i class="uil uil-house-user nav__icon"></i>Home
+                        </a>
+                        <a href="{% url 'projects-view' %}"  class="nav__link">
+                            <i class="uil uil-brain nav__icon"></i>Projects
+                        </a>
+                        <a href="{% url 'contact:contactus' %}" class="nav__link">
+                            <i class="uil uil-envelope nav__icon"></i>Contact
+                        </a>
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'contact:contactlist' %}" class="nav__link">
+                            <i class="uil uil-envelope nav__icon"></i>Messages List
+                        </a>
+                        {% endif %}
+                    </li>
+
+                </ul>
+                <i class="uil uil-times nav__close" id="nav-close"></i>
+            </div>
+
+            <div class="nav__btns">
+                <!-- Theme change button -->
+                <i class="uil uil-moon change-theme" id="theme-button"></i>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="uil uil-apps nav__icon"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- ============================  Main ============================ -->
+    <main class="main">
+        <!-- ============================  HOME  ============================ -->
+        <section class="home section" id="home">
+            <div class="home__container container grid">
+                <div class="home__data">
+                    <h1 class="home__title">Welcome in our team portfolio</h1> <br>
+                    <p class="home__description">Welcome to our team's website, where we showcase our passion for innovation and dedication to creating exciting projects. Our team consists of two students who are passionate about using technology to make a positive impact on the world.
+                        On this website, you will find information about the projects we have worked on, as well as our ongoing work. We are excited to share our progress and accomplishments with you, and hope that our projects inspire you to pursue your own innovative ideas.
+                        Through our website, we aim to provide a glimpse into our creative process, and highlight the various technologies and tools we use to bring our ideas to life. We believe that collaboration is key to success, and we invite you to join us on our journey towards creating impactful projects that make a difference. <br /> - Thank you for visiting our website, and we hope that you find it informative and inspiring. If you have any questions or feedback, please don't hesitate to reach out to us. </p>
+                    <a href="{% url 'contact:contactus' %}" class="button button--flex">
+                        Contact  <i class="uil uil-message button-icon"></i>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================  Team  ============================ -->
+
+    <section class="about section" id="about">
+        <h2 class="section__title">Meet The Team</h2>
+        <br>
+        {% for person in persons %}
+        <div class="u-container-layout ">
+            <div class="about__container container ">
+
+
+                <div class="about_data">
+                     <!-- To Use in the future -->
+                    <div class="about__info">
+                            <div>
+                                <span class="section__subtitle">
+                                    <ul>
+                                        <li><b>{{ person.name }}</b></li>
+                                        <li>{{ person.title }}</li>
+
+                                    </ul>  </span>
+                    </div>
+
+                    <p class="about__description">
+                                {{ person.description }}
+                    </p>
+
+                        <div class="home__social">
+                            <a href={{ person.Linkedin_url }} target="_blank" class="home__social-icon">
+                                <i class="uil uil-linkedin-alt"></i>
+                            </a>
+                        </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </section>
+
+
+<!-- ============================  FOOTER ============================ -->
+    <footer class="footer">
+        <div class="footer__bg">
+            <div class="footer__container container grid">
+                <ul class="footer__links">
+                    <li>
+                        <a href="/" class="footer__link">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'projects-view' %}" class="footer__link">Projects</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contact:contactus' %}" class="footer__link">
+                            <i class="uil uil-envelope nav__icon"></i>Contact Us
+                        </a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'contact:contactlist' %}" class="footer__link">
+                            <i class="uil uil-envelope nav__icon"></i>Messages List
+
+
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="{% static './js/main.js'%}"></script>
+</body>
+</html>

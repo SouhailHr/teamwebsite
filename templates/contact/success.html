@@ -1,0 +1,103 @@
+{% load static i18n %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Website - Message has been sent </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="authors" content="Souhail Harrathi & Jad Estephan">
+     <!-- ============================ Style & UNICONS CSS --============================ -->
+        <link rel="stylesheet" type="text/css" href="{% static '/css/style.css'%}" >
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+</head>
+
+<!-- ============================  Header ============================ -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list grid">
+                    <li class="nav__item">
+                        <a href="/" class="nav__link">
+                            <i class="uil uil-house-user nav__icon"></i>Home
+                        </a>
+                        <a href="{% url 'projects-view' %}"  class="nav__link">
+                            <i class="uil uil-brain nav__icon"></i>Projects
+                        </a>
+                        <a href="{% url 'contact:contactus' %}" class="nav__link">
+                            <i class="uil uil-envelope nav__icon"></i>Contact
+                        </a>
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'contact:contactlist' %}" class="nav__link">
+                            <i class="uil uil-envelope nav__icon"></i>Messages List
+                        </a>
+                        {% endif %}
+                    </li>
+
+                </ul>
+                <i class="uil uil-times nav__close" id="nav-close"></i>
+            </div>
+
+            <div class="nav__btns">
+                <!-- Theme change button -->
+                <i class="uil uil-moon change-theme" id="theme-button"></i>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="uil uil-apps nav__icon"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<body>
+    <main>
+
+        <section class="contact section" id="contact">
+            <h2 class="section__title">Message has been sent  </h2>
+            <span class="section__subtitle">You will receive a reply as soon as possible</span>
+            {% block content %}
+            <div class="contact__container container grid">
+                <a  class="button button--flex"  href="/">
+                                Return to Home Page <i class="uil uil-home button-icon"></i>
+                </a>
+                {% endblock %}
+
+            </div>
+
+        </section>
+    </main>
+
+        <!-- ============================  FOOTER ============================ -->
+    <footer class="footer">
+        <div class="footer__bg">
+            <div class="footer__container container grid">
+                <ul class="footer__links">
+                    <li>
+                        <a href="/" class="footer__link">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'projects-view' %}" class="footer__link">Projects</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contact:contactus' %}" class="footer__link">
+                            <i class="uil uil-envelope nav__icon"></i>Contact Us
+                        </a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'contact:contactlist' %}" class="footer__link">
+                            <i class="uil uil-envelope nav__icon"></i>Messages List
+
+
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="{% static './js/main.js'%}"></script>
+</body>
+</html>
